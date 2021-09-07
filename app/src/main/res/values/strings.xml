@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">StorageAnimal</string>
+
+    <string-array name="filter_name">
+        <item>ID</item>
+        <item>Name</item>
+        <item>Age</item>
+        <item>Breed</item>
+    </string-array>
+
+
+    <string-array name="filter_value">
+        <item>id</item>
+        <item>name</item>
+        <item>age</item>
+        <item>breed</item>
+    </string-array>
+
+</resources>
