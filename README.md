@@ -9,3 +9,6 @@ Application functionality: adding, deleting, updating, filtering and deleting al
 Android API, Kotlin, SingleActivity, Fragments, Navigation, DataBinding, \
 Room, SQLiteOpenHelper, ModelView, Repository, \
 LiveData and Coroutines (also Parcelize, Kapt)
+
+### Preview
+![](https://github.com/Daniil-master/RS-School-Android-Task4-StorageAnimal/blob/master/previewStorageAnimal.gif)
