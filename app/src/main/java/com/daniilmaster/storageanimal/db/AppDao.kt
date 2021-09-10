@@ -1,15 +1,14 @@
 package com.daniilmaster.storageanimal.db
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
 @Dao
 interface AppDao {
     // DESC -  в порядке убывания
     // ASC - в порядке возрастания
-    @Query("SELECT * FROM animal_table ORDER BY :filterName ASC")
-    fun getAllAnimals(filterName: String): LiveData<List<AnimalEntity>>
+//    @Query("SELECT * FROM animal_table ORDER BY :filterName ASC")
+//    fun getAllAnimals(filterName: String): LiveData<List<AnimalEntity>>
 
     @Query("SELECT * FROM animal_table ORDER BY id ASC")
     fun filterId(): LiveData<List<AnimalEntity>>

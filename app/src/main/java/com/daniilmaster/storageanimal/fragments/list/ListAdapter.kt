@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.daniilmaster.storageanimal.R
 import com.daniilmaster.storageanimal.databinding.ListItemBinding
 import com.daniilmaster.storageanimal.db.AnimalEntity
 
@@ -18,9 +19,10 @@ class ListAdapter(private val onDeleteFragment: OnDeleteFragment) :
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AnimalEntity) {
-            binding.txtId.text = "id: ${item.id}"
+            binding.txtId.setText(R.string.item_add_id)
+            binding.txtId.append("${item.id}")
             binding.txtName.text = item.name
-            binding.txtAge.text =  item.age.toString()
+            binding.txtAge.text = item.age.toString()
             binding.txtBreed.text = item.breed
 
             binding.listItemLayout.setOnClickListener {

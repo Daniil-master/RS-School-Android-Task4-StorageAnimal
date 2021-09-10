@@ -1,7 +1,6 @@
-package com.daniilmaster.storageanimal.main
+package com.daniilmaster.storageanimal.ui
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.preference.PreferenceManager
 import com.daniilmaster.storageanimal.db.AnimalEntity
@@ -73,17 +72,10 @@ class AppRepository(
             animals = dbHelper.filterSelect(selectedFilter)
         }
 
-        if (isRoom)
-            showToast("Filter by: $selectedFilter \nLibrary: Room")
-        else
-            showToast("Filter by: $selectedFilter \nLibrary: Cursor")
 
         return animals
     }
 
-    private fun showToast(text: String) {
-        Toast.makeText(application, text, Toast.LENGTH_SHORT).show()
-    }
 
     private fun getIsRoom() {
         isRoom = pref.getBoolean("switch_room_or_cursor", true)

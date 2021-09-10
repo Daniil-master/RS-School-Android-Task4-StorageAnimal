@@ -6,15 +6,13 @@
         android:entries="@array/filter_name"
         android:entryValues="@array/filter_value"
         android:key="list_preference_filter"
-        android:summary="Filtering all items in a list"
-        android:title="Filter for Animals" />
+        android:summary="@string/pref_sum_sort"
+        android:title="@string/pref_title_sort" />
 
-
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="switch_room_or_cursor"
-            android:summary="Library selection"
-            android:title="On: Room / Off: Cursor" />
-
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="switch_room_or_cursor"
+        android:summary="@string/pref_sum_lib"
+        android:title="@string/pref_title_lib" />
 
 </PreferenceScreen>

@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.daniilmaster.storageanimal.R
 import com.daniilmaster.storageanimal.databinding.FragmentAddBinding
 import com.daniilmaster.storageanimal.db.AnimalEntity
-import com.daniilmaster.storageanimal.main.AppViewModel
+import com.daniilmaster.storageanimal.ui.AppViewModel
 
 class AddFragment : Fragment() {
     private lateinit var viewModel: AppViewModel
@@ -45,12 +44,11 @@ class AddFragment : Fragment() {
             // Create object, add to database and in view list
             val animal = AnimalEntity(0, name, age.toInt(), breed)
             viewModel.addAnimal(animal)
-            Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
+            showToast(R.string.toast_added_success)
+
             findNavController().navigate(R.id.action_addFragment_to_listFragment)
-        }
-        else{
-            Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
-                .show()
+        } else {
+            showToast(R.string.toast_no_success)
         }
     }
 

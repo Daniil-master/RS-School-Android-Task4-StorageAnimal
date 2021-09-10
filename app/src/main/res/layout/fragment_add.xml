@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Add Animal"
+        android:text="@string/title_add"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,16 +22,18 @@
     <EditText
         android:id="@+id/etAddName"
         android:layout_width="0dp"
+        android:maxLength="12"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/ui_edit_tint"
         android:ems="10"
-        android:hint="Name animal"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:hint="@string/ed_hint_name"
+        android:inputType="textPersonName|textCapWords"
+        android:minHeight="@dimen/ed_min_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/etAddAge"
@@ -40,12 +42,14 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/ui_edit_tint"
         android:ems="10"
-        android:hint="Age: 20 e.c."
+        android:maxLength="3"
+        android:hint="@string/ed_hint_age"
         android:inputType="number"
-        android:minHeight="48dp"
+        android:minHeight="@dimen/ed_min_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddName" />
+        app:layout_constraintTop_toBottomOf="@+id/etAddName"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/etAddBreed"
@@ -53,13 +57,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:maxLength="20"
         android:backgroundTint="@color/ui_edit_tint"
-        android:hint="Breed animal"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:hint="@string/ed_hint_breed"
+        android:inputType="textPersonName|textCapWords"
+        android:minHeight="@dimen/ed_min_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddAge" />
+        app:layout_constraintTop_toBottomOf="@+id/etAddAge"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/btnAdd"
@@ -68,7 +74,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/ui_button"
-        android:text="Add"
+        android:text="@string/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAddBreed" />
 
@@ -78,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:backgroundTint="@color/ui_button_cancel"
-        android:text="Cancel"
+        android:text="@string/cancel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnAdd" />
 

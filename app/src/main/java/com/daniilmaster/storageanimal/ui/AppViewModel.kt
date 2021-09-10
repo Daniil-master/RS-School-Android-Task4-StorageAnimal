@@ -1,4 +1,4 @@
-package com.daniilmaster.storageanimal.main
+package com.daniilmaster.storageanimal.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

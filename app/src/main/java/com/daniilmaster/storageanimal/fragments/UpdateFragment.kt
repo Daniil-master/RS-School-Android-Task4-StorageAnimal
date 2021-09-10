@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -12,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.daniilmaster.storageanimal.R
 import com.daniilmaster.storageanimal.databinding.FragmentUpdateBinding
 import com.daniilmaster.storageanimal.db.AnimalEntity
-import com.daniilmaster.storageanimal.main.AppViewModel
+import com.daniilmaster.storageanimal.ui.AppViewModel
 
 class UpdateFragment : Fragment() {
     private var _binding: FragmentUpdateBinding? = null
@@ -28,7 +27,7 @@ class UpdateFragment : Fragment() {
         _binding = FragmentUpdateBinding.inflate(layoutInflater, container, false)
         viewModel = ViewModelProvider(this).get(AppViewModel::class.java)
 
-        binding.etUpadateName.setText(args.currentAnimal.name)
+        binding.etUpdateName.setText(args.currentAnimal.name)
         binding.etUpdateAge.setText(args.currentAnimal.age.toString())
         binding.etUpdateBreed.setText(args.currentAnimal.breed)
 
@@ -44,20 +43,19 @@ class UpdateFragment : Fragment() {
 
     private fun updateItem() {
         val id = args.currentAnimal.id
-        val name = binding.etUpadateName.text.toString()
+        val name = binding.etUpdateName.text.toString()
         val age = binding.etUpdateAge.text.toString()
         val breed = binding.etUpdateBreed.text.toString()
 
         if (inputCheck(name, age, breed)) {
             val updateAnimal = AnimalEntity(id, name, age.toInt(), breed)
             viewModel.updateAnimal(updateAnimal)
+            showToast(R.string.toast_update_success)
 
-            Toast.makeText(requireContext(), "Update Successfully!", Toast.LENGTH_SHORT).show()
             // Navigation back
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         } else {
-            Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_SHORT)
-                .show()
+            showToast(R.string.toast_no_success)
         }
     }
 

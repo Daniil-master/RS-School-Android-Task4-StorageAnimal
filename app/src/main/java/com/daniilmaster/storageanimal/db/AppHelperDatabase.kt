@@ -19,20 +19,20 @@ class AppHelperDatabase(context: Context) :
 
     // Имена (константы)
     companion object {
-        private val DATABASE_NAME = "app_database"
-        private val DATABASE_VERSION = 1
+        private const val DATABASE_NAME = "app_database"
+        private const val DATABASE_VERSION = 1
 
-        private val TABLE_NAME = "animal_table"
+        private const val TABLE_NAME = "animal_table"
 
-        private val KEY_ID = "id"
-        private val KEY_NAME = "name"
-        private val KEY_AGE = "age"
-        private val KEY_BREED = "breed"
+        private const val KEY_ID = "id"
+        private const val KEY_NAME = "name"
+        private const val KEY_AGE = "age"
+        private const val KEY_BREED = "breed"
     }
 
     // УПРАВЛЕНИЕ ТАБЛИЦАМИ (встроенные)
     override fun onCreate(db: SQLiteDatabase?) {
-        val CREATE_CONTACTS_TABLE = ("CREATE TABLE "
+        val createQuery = ("CREATE TABLE "
                 + TABLE_NAME
                 + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"
@@ -40,7 +40,7 @@ class AppHelperDatabase(context: Context) :
                 + KEY_AGE + " INTEGER, "
                 + KEY_BREED + " TEXT"
                 + ")")
-        db?.execSQL(CREATE_CONTACTS_TABLE)
+        db?.execSQL(createQuery)
     }
 
     // Пересоздание
@@ -108,7 +108,7 @@ class AppHelperDatabase(context: Context) :
         val selectQuery = "SELECT * FROM $TABLE_NAME ORDER BY $filterName ASC"
 
         // Курсор используется для чтения записей по очереди и добавления от каждой коллоны данные в модельный клас
-        var cursor: Cursor? = null
+        val cursor: Cursor?
 
         // составление запроса безопастным способом
         try {

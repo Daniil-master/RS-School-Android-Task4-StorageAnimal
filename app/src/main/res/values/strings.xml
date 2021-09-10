@@ -1,6 +1,58 @@
 <resources>
     <string name="app_name">StorageAnimal</string>
 
+    <string name="title_list">List</string>
+    <string name="title_add">Add Animal</string>
+    <string name="title_update">Update Animal</string>
+    <string name="title_settings">Settings</string>
+
+    <string name="ed_hint_name">Name animal</string>
+    <string name="ed_hint_age">Age: 20 e.c.</string>
+    <string name="ed_hint_breed">Breed animal</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="update">Update</string>
+
+    <string name="item_age">age:</string>
+    <string name="item_breed">breed:</string>
+    <string name="item_add_id">id:\u00A0</string>
+
+    <string name="toast_update_success">Successfully update!</string>
+    <string name="toast_added_success">Successfully added!</string>
+    <string name="toast_no_success">Please fill out all fields</string>
+
+    <string name="toast_sort">Sort by:\u00A0</string>
+    <string name="toast_lib">\nLibrary:\u00A0</string>
+
+    <string name="dialog_delete_title">Delete</string>
+    <string name="dialog_delete_message">Are you sure you want to delete</string>
+    <string name="toast_delete_success">Successfully removed:\u00A0</string>
+
+    <string name="dialog_delete_all_title">Delete all animals?</string>
+    <string name="dialog_delete_all_message">Are you sure you want to delete all animals?</string>
+    <string name="toast_delete_all_success">Successfully removed all animals!</string>
+
+    <!-- PreferenceFragment -->
+    <string name="pref_title_sort">Sort by Animals</string>
+    <string name="pref_sum_sort">sorting all items in a list</string>
+
+    <string name="pref_title_lib">On: Room / Off: Cursor</string>
+    <string name="pref_sum_lib">library selection</string>
+
+    <!-- Desc -->
+    <string name="desc_float_add">Add Animal</string>
+    <string name="desc_img_delete_all">Delete all items</string>
+    <string name="desc_img_filter">Filter db</string>
+    <string name="desc_img_delete_item">Delete item</string>
+
+    <string name="preview_id">id: 111</string>
+    <string name="preview_breed">Cat Siberian</string>
+    <string name="preview_age">5</string>
+    <string name="preview_name">Dona</string>
+
     <string-array name="filter_name">
         <item>ID</item>
         <item>Name</item>

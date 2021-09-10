@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Update Animal"
+        android:text="@string/title_update"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,15 +20,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etUpadateName"
+        android:id="@+id/etUpdateName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/ui_edit_tint"
         android:ems="10"
-        android:hint="Name animal"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:hint="@string/ed_hint_name"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName|textCapWords"
+        android:maxLength="12"
+        android:minHeight="@dimen/ed_min_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
@@ -36,27 +38,31 @@
     <EditText
         android:id="@+id/etUpdateAge"
         android:layout_width="0dp"
-        android:backgroundTint="@color/ui_edit_tint"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="@color/ui_edit_tint"
         android:ems="10"
-        android:hint="Age: 20 e.c."
+        android:hint="@string/ed_hint_age"
+        android:importantForAutofill="no"
         android:inputType="number"
-        android:minHeight="48dp"
+        android:maxLength="3"
+        android:minHeight="@dimen/ed_min_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUpadateName" />
+        app:layout_constraintTop_toBottomOf="@+id/etUpdateName" />
 
     <EditText
         android:id="@+id/etUpdateBreed"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:ems="10"
         android:backgroundTint="@color/ui_edit_tint"
-        android:hint="Breed animal"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:ems="10"
+        android:hint="@string/ed_hint_breed"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName|textCapWords"
+        android:maxLength="20"
+        android:minHeight="@dimen/ed_min_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUpdateAge" />
@@ -68,7 +74,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/ui_button"
-        android:text="Update"
+        android:text="@string/update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUpdateBreed" />
 
@@ -78,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:backgroundTint="@color/ui_button_cancel"
-        android:text="Cancel"
+        android:text="@string/cancel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnUpdate" />
 

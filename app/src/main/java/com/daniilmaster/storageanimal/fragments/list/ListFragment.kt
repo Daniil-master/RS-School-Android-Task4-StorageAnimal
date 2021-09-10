@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,15 +15,29 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.daniilmaster.storageanimal.R
 import com.daniilmaster.storageanimal.databinding.FragmentListBinding
 import com.daniilmaster.storageanimal.db.AnimalEntity
-import com.daniilmaster.storageanimal.main.AppViewModel
+import com.daniilmaster.storageanimal.fragments.showToast
+import com.daniilmaster.storageanimal.ui.AppViewModel
 
 class ListFragment : Fragment(), OnDeleteFragment {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: AppViewModel
     private var adapter: ListAdapter? = null
-//    private var _pref: SharedPreferences? = null
-//    private val pref get() = _pref!!
+    private var _pref: SharedPreferences? = null
+    private val pref get() = _pref!!
+
+    private var selectedFilter = "id"
+    private var isRoom = true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +53,8 @@ class ListFragment : Fragment(), OnDeleteFragment {
         // ViewModel
         viewModel = ViewModelProvider(this).get(AppViewModel::class.java)
 
-//        _pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        _pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
 //        viewModel.animals.observe(viewLifecycleOwner, { user ->
 //            adapter!!.setData(user)
 //        }) // обновление при изменений
@@ -62,6 +77,18 @@ class ListFragment : Fragment(), OnDeleteFragment {
     override fun onResume() {
         super.onResume()
 
+        val newFilter = pref.getString("list_preference_filter", "id").toString()
+        val newIsRoom = pref.getBoolean("switch_room_or_cursor", true)
+
+        if (selectedFilter != newFilter || isRoom != newIsRoom) {
+            selectedFilter = newFilter
+            isRoom = newIsRoom
+            var str =
+                getString(R.string.toast_sort) + selectedFilter + getString(R.string.toast_lib)
+            str += if (isRoom) "Room" else "Cursor"
+            showToast(str)
+        }
+
         // Обновление строения
         viewModel.allAnimals()
         viewModel.animals.observe(viewLifecycleOwner, { user ->
@@ -79,28 +106,24 @@ class ListFragment : Fragment(), OnDeleteFragment {
 //        val isRoom = pref.getBoolean("switch_room_or_cursor", true)
 
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes") { _, _ ->
+        builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
 
             // ViewModel and Navigate
             viewModel.deleteAnimal(animalEntity)
-            Toast.makeText(
-                requireContext(),
-                "Successfully removed: ${animalEntity.name}",
-                Toast.LENGTH_SHORT
-            ).show()
 
+            showToast(getString(R.string.toast_delete_success) + animalEntity.name)
 
-                viewModel.allAnimals()
-                viewModel.animals.observe(viewLifecycleOwner, { user ->
-                    adapter!!.setData(user)
-                })
+            viewModel.allAnimals()
+            viewModel.animals.observe(viewLifecycleOwner, { user ->
+                adapter!!.setData(user)
+            })
 
         }
-        builder.setNegativeButton("No") { _, _ ->
+        builder.setNegativeButton(getString(R.string.no)) { _, _ ->
 
         }
-        builder.setTitle("Delete ${animalEntity.name}?")
-        builder.setMessage("Are you sure you want to delete ${animalEntity.name}?")
+        builder.setTitle(getString(R.string.dialog_delete_title) + " ${animalEntity.name}?")
+        builder.setMessage(getString(R.string.dialog_delete_message) + " ${animalEntity.name}?")
         builder.create().show()
     }
 
@@ -108,29 +131,25 @@ class ListFragment : Fragment(), OnDeleteFragment {
 
 
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes") { _, _ ->
+        builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
 
             // ViewModel and Navigate
             viewModel.deleteAllAnimals()
 
-            Toast.makeText(
-                requireContext(),
-                "Successfully removed all animals!",
-                Toast.LENGTH_SHORT
-            ).show()
+            showToast(R.string.toast_delete_all_success)
 
 
-                viewModel.allAnimals()
-                viewModel.animals.observe(viewLifecycleOwner, { user ->
-                    adapter!!.setData(user)
-                })
+            viewModel.allAnimals()
+            viewModel.animals.observe(viewLifecycleOwner, { user ->
+                adapter!!.setData(user)
+            })
 
         }
-        builder.setNegativeButton("No") { _, _ ->
+        builder.setNegativeButton(getString(R.string.no)) { _, _ ->
 
         }
-        builder.setTitle("Delete all animals?")
-        builder.setMessage("Are you sure you want to delete all animals?")
+        builder.setTitle(R.string.dialog_delete_all_title)
+        builder.setMessage(R.string.dialog_delete_all_message)
         builder.create().show()
     }
 }

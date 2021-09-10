@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Name"
+        android:text="@string/preview_name"
         android:textColor="#000"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="age:"
+        android:text="@string/item_age"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="22"
+        android:text="@string/preview_age"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/txtLabelAge"
         app:layout_constraintTop_toTopOf="@+id/txtLabelAge" />
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="breed:"
+        android:text="@string/item_breed"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/txtAge"
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="breed"
+        android:text="@string/preview_breed"
         android:textSize="18sp"
 
         app:layout_constraintStart_toEndOf="@+id/txtLabelBreed"
@@ -68,20 +68,21 @@
 
     <ImageView
         android:id="@+id/imgDelete"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/size_icon"
+        android:layout_height="@dimen/size_icon"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_delete" />
+        app:srcCompat="@drawable/ic_delete"
+        android:contentDescription="@string/desc_img_delete_item" />
 
     <TextView
         android:id="@+id/txtId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="222"
+        android:text="@string/preview_id"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/imgDelete"
         app:layout_constraintStart_toStartOf="@+id/imgDelete"
