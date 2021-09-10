@@ -55,7 +55,7 @@ class ListFragment : Fragment(), OnDeleteFragment {
 
 
         _pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
-//        viewModel.animals.observe(viewLifecycleOwner, { user ->
+//        viewModel.animals.observe(viewLifecycleOwner, { listAnimals ->
 //            adapter!!.setData(user)
 //        }) // обновление при изменений
 
@@ -91,8 +91,8 @@ class ListFragment : Fragment(), OnDeleteFragment {
 
         // Обновление строения
         viewModel.allAnimals()
-        viewModel.animals.observe(viewLifecycleOwner, { user ->
-            adapter!!.setData(user)
+        viewModel.animals.observe(viewLifecycleOwner, { listAnimals ->
+            adapter!!.setData(listAnimals)
         })
 
     }
@@ -114,8 +114,8 @@ class ListFragment : Fragment(), OnDeleteFragment {
             showToast(getString(R.string.toast_delete_success) + animalEntity.name)
 
             viewModel.allAnimals()
-            viewModel.animals.observe(viewLifecycleOwner, { user ->
-                adapter!!.setData(user)
+            viewModel.animals.observe(viewLifecycleOwner, { listAnimals ->
+                adapter!!.setData(listAnimals)
             })
 
         }
@@ -138,10 +138,9 @@ class ListFragment : Fragment(), OnDeleteFragment {
 
             showToast(R.string.toast_delete_all_success)
 
-
             viewModel.allAnimals()
-            viewModel.animals.observe(viewLifecycleOwner, { user ->
-                adapter!!.setData(user)
+            viewModel.animals.observe(viewLifecycleOwner, { listAnimals ->
+                adapter!!.setData(listAnimals)
             })
 
         }

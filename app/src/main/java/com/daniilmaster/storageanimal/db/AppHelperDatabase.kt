@@ -119,6 +119,7 @@ class AppHelperDatabase(context: Context) :
         } catch (e: SQLiteException) {
             db.execSQL(selectQuery) // выполняем запроса (без Cursor)
             listLiveData.value = list
+//            listLiveData.value = emptyList()
             return listLiveData // возрат пустого списка
         }
 
