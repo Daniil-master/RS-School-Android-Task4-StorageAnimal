@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.daniilmaster.storageanimal.fragments.list.ListFragment"
+        android:name="com.daniilmaster.storageanimal.ui.fragments.list.ListFragment"
         android:label="@string/title_list"
         tools:layout="@layout/fragment_list">
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.daniilmaster.storageanimal.fragments.AddFragment"
+        android:name="com.daniilmaster.storageanimal.ui.fragments.AddFragment"
         android:label="@string/title_add"
         tools:layout="@layout/fragment_add">
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
-        android:name="com.daniilmaster.storageanimal.fragments.UpdateFragment"
+        android:name="com.daniilmaster.storageanimal.ui.fragments.UpdateFragment"
         android:label="@string/title_update"
         tools:layout="@layout/fragment_update">
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/filterPrefFragment"
-        android:name="com.daniilmaster.storageanimal.fragments.FilterPrefFragment"
+        android:name="com.daniilmaster.storageanimal.ui.fragments.FilterPrefFragment"
         android:label="@string/title_settings">
         <action
             android:id="@+id/action_filterPrefFragment_to_listFragment"

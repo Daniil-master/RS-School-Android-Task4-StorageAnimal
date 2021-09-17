@@ -30,6 +30,9 @@ class AppHelperDatabase(context: Context) :
         private const val KEY_BREED = "breed"
     }
 
+    private val dbWritable = writableDatabase
+    private val dbReader = readableDatabase
+
     // УПРАВЛЕНИЕ ТАБЛИЦАМИ (встроенные)
     override fun onCreate(db: SQLiteDatabase?) {
         val createQuery = ("CREATE TABLE "
@@ -50,57 +53,42 @@ class AppHelperDatabase(context: Context) :
     }
 
     // ОБРАБОТКА ДАННЫХ ТАБЛИЦЫ animal_table
-
+    // TODO Так и как я могу это сделать, то есть мне вызывать у вьюмодели обновление из бд
     // Добавление данных (Insert)
     fun addAnimal(animal: AnimalEntity): Long {
-        val db = writableDatabase
-
         val contentValues = ContentValues()
         contentValues.put(KEY_NAME, animal.name)
         contentValues.put(KEY_AGE, animal.age)
         contentValues.put(KEY_BREED, animal.breed)
 
-        val success = db.insert(TABLE_NAME, null, contentValues)
-        db.close()
-        return success // результат запроса (больше -1 успех)
+        return dbWritable.insert(TABLE_NAME, null, contentValues)
+        // результат запроса (больше -1 успех)
     }
 
     // Обновление записи (Update)
     fun updateAnimal(animal: AnimalEntity): Int {
-        val db = writableDatabase // на запись
-
         val contentValues = ContentValues()
         contentValues.put(KEY_NAME, animal.name)
         contentValues.put(KEY_AGE, animal.age)
         contentValues.put(KEY_BREED, animal.breed)
 
-        val success = db.update(TABLE_NAME, contentValues, KEY_ID + "=" + animal.id, null)
-
-        db.close()
-        return success // результат запроса (больше -1 успех)
+        return dbWritable.update(TABLE_NAME, contentValues, KEY_ID + "=" + animal.id, null)
+        // результат запроса (больше -1 успех)
     }
 
     // Удаление записи (Delete)
     fun deleteAnimal(animal: AnimalEntity): Int {
-        val db = writableDatabase // на чтение
-
         // удаление строки по id
-        val success = db.delete(TABLE_NAME, KEY_ID + "=" + animal.id, null)
-
-        db.close() // закрытие подключения к базе данных
-        return success // результат запроса (больше -1 успех)
+        return dbWritable.delete(TABLE_NAME, KEY_ID + "=" + animal.id, null)
+        // результат запроса (больше -1 успех)
     }
 
     fun deleteAllAnimals() {
-        val db = writableDatabase // на запись
-        db.execSQL("DELETE FROM animal_table")
-        db.close()
+        dbWritable.execSQL("DELETE FROM animal_table")
     }
 
     // Получение данных (Select)
     fun filterSelect(filterName: String): LiveData<List<AnimalEntity>> {
-        val db = readableDatabase // чтение
-
         val list = mutableListOf<AnimalEntity>() // список для модельного класса
         val listLiveData = MutableLiveData<List<AnimalEntity>>()
 
@@ -112,12 +100,12 @@ class AppHelperDatabase(context: Context) :
 
         // составление запроса безопастным способом
         try {
-            cursor = db.rawQuery(
+            cursor = dbReader.rawQuery(
                 selectQuery,
                 null
             ) // выполнение запросу и получение курсора (без выбранных аргументов)
         } catch (e: SQLiteException) {
-            db.execSQL(selectQuery) // выполняем запроса (без Cursor)
+            dbReader.execSQL(selectQuery) // выполняем запроса (без Cursor)
             listLiveData.value = list
 //            listLiveData.value = emptyList()
             return listLiveData // возрат пустого списка
@@ -143,10 +131,9 @@ class AppHelperDatabase(context: Context) :
 
             } while (cursor.moveToNext()) // прохоид по каждому курсору
         }
-        db.close()
+
         cursor.close()
         listLiveData.value = list
-
 
         return listLiveData // возрат списка
     }

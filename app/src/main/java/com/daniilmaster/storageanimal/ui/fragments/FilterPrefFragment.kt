@@ -1,4 +1,4 @@
-package com.daniilmaster.storageanimal.fragments
+package com.daniilmaster.storageanimal.ui.fragments
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat

@@ -1,4 +1,4 @@
-package com.daniilmaster.storageanimal.fragments.list
+package com.daniilmaster.storageanimal.ui.fragments.list
 
 import android.app.AlertDialog
 import android.content.SharedPreferences
@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.daniilmaster.storageanimal.R
 import com.daniilmaster.storageanimal.databinding.FragmentListBinding
 import com.daniilmaster.storageanimal.db.AnimalEntity
-import com.daniilmaster.storageanimal.fragments.showToast
 import com.daniilmaster.storageanimal.ui.AppViewModel
+import com.daniilmaster.storageanimal.ui.fragments.showToast
 
 class ListFragment : Fragment(), OnDeleteFragment {
     private var _binding: FragmentListBinding? = null
@@ -89,6 +89,9 @@ class ListFragment : Fragment(), OnDeleteFragment {
             showToast(str)
         }
 
+//        val observer: Observer<List<AnimalEntity>> = Observer { adapter!!.setData(it) }
+//        viewModel.animals.removeObserver(observer)
+
         // Обновление строения
         viewModel.allAnimals()
         viewModel.animals.observe(viewLifecycleOwner, { listAnimals ->
@@ -103,8 +106,6 @@ class ListFragment : Fragment(), OnDeleteFragment {
     }
 
     override fun delete(animalEntity: AnimalEntity) {
-//        val isRoom = pref.getBoolean("switch_room_or_cursor", true)
-
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
 
@@ -128,8 +129,6 @@ class ListFragment : Fragment(), OnDeleteFragment {
     }
 
     private fun deleteAll() {
-
-
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
 

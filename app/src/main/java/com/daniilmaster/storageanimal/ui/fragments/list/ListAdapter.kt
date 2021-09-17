@@ -1,4 +1,4 @@
-package com.daniilmaster.storageanimal.fragments.list
+package com.daniilmaster.storageanimal.ui.fragments.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

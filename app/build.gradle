@@ -15,8 +15,8 @@ android {
         applicationId "com.daniilmaster.storageanimal"
         minSdk 21
         targetSdk 30
-        versionCode 2
-        versionName "1.2.1"
+        versionCode 3
+        versionName "1.2.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
