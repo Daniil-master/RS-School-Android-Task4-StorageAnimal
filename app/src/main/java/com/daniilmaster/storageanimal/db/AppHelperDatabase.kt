@@ -53,7 +53,6 @@ class AppHelperDatabase(context: Context) :
     }
 
     // ОБРАБОТКА ДАННЫХ ТАБЛИЦЫ animal_table
-    // TODO Так и как я могу это сделать, то есть мне вызывать у вьюмодели обновление из бд
     // Добавление данных (Insert)
     fun addAnimal(animal: AnimalEntity): Long {
         val contentValues = ContentValues()
