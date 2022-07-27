@@ -9,12 +9,12 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.daniilmaster.storageanimal"
         minSdk 21
-        targetSdk 30
+        targetSdk 31
         versionCode 3
         versionName "1.2.4"
 
@@ -42,10 +42,10 @@ android {
 
 dependencies {
     // Main
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0' // добавлено
 
@@ -55,9 +55,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Version
-    def navigation = "2.3.5"
-    def room = "2.3.0"
-    def coroutines = "1.5.1"
+    def navigation = '2.5.0'
+    def room = '2.4.2'
+    def coroutines = '1.6.4'
 
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
@@ -71,18 +71,18 @@ dependencies {
 
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
 
     // Kotlin components
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.30"
-    implementation 'org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.5.30'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10'
+    implementation 'org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.7.10'
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
     // DataBinding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
 
-    implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
 
 }

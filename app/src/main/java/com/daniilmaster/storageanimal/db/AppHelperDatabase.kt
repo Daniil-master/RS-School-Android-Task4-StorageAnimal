@@ -19,7 +19,7 @@ class AppHelperDatabase(context: Context) :
 
     // Имена (константы)
     companion object {
-        private const val DATABASE_NAME = "app_database"
+        private const val DATABASE_NAME = "app_database_animal"
         private const val DATABASE_VERSION = 1
 
         private const val TABLE_NAME = "animal_table"
@@ -38,10 +38,10 @@ class AppHelperDatabase(context: Context) :
         val createQuery = ("CREATE TABLE "
                 + TABLE_NAME
                 + "("
-                + KEY_ID + " INTEGER PRIMARY KEY,"
-                + KEY_NAME + " TEXT,"
-                + KEY_AGE + " INTEGER, "
-                + KEY_BREED + " TEXT"
+                + KEY_ID + " INTEGER PRIMARY KEY NOT NULL,"
+                + KEY_NAME + " TEXT NOT NULL,"
+                + KEY_AGE + " INTEGER NOT NULL,"
+                + KEY_BREED + " TEXT NOT NULL"
                 + ")")
         db?.execSQL(createQuery)
     }
@@ -119,10 +119,10 @@ class AppHelperDatabase(context: Context) :
         if (cursor.moveToFirst()) { // от первого курсора
             do {
                 // получаем данные из курсора
-                id = cursor.getInt(cursor.getColumnIndex(KEY_ID))
-                name = cursor.getString(cursor.getColumnIndex(KEY_NAME))
-                age = cursor.getInt(cursor.getColumnIndex(KEY_AGE))
-                breed = cursor.getString(cursor.getColumnIndex(KEY_BREED))
+                id = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_ID))
+                name = cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME))
+                age = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_AGE))
+                breed = cursor.getString(cursor.getColumnIndexOrThrow(KEY_BREED))
 
                 val animal = AnimalEntity(id, name, age, breed) // сохраняем в модель
                 list.add(animal)

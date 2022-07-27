@@ -17,6 +17,7 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
+        private val lock = Any()
 
         fun getDatabase(context: Context): AppDatabase {
 
@@ -24,12 +25,12 @@ abstract class AppDatabase : RoomDatabase() {
             if (temp != null) {
                 return temp
             }
-            synchronized(true) {
+            synchronized(lock) {
                 val instance =
                     Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
-                        "app_database"
+                        "app_database_animal"
                     ).build()
 
                 INSTANCE = instance

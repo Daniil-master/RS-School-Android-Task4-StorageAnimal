@@ -94,9 +94,9 @@ class ListFragment : Fragment(), OnDeleteFragment {
 
         // Обновление строения
         viewModel.allAnimals()
-        viewModel.animals.observe(viewLifecycleOwner, { listAnimals ->
+        viewModel.animals.observe(viewLifecycleOwner) { listAnimals ->
             adapter!!.setData(listAnimals)
-        })
+        }
 
     }
 
@@ -115,9 +115,9 @@ class ListFragment : Fragment(), OnDeleteFragment {
             showToast(getString(R.string.toast_delete_success) + animalEntity.name)
 
             viewModel.allAnimals()
-            viewModel.animals.observe(viewLifecycleOwner, { listAnimals ->
+            viewModel.animals.observe(viewLifecycleOwner) { listAnimals ->
                 adapter!!.setData(listAnimals)
-            })
+            }
 
         }
         builder.setNegativeButton(getString(R.string.no)) { _, _ ->
@@ -138,9 +138,9 @@ class ListFragment : Fragment(), OnDeleteFragment {
             showToast(R.string.toast_delete_all_success)
 
             viewModel.allAnimals()
-            viewModel.animals.observe(viewLifecycleOwner, { listAnimals ->
+            viewModel.animals.observe(viewLifecycleOwner) { listAnimals ->
                 adapter!!.setData(listAnimals)
-            })
+            }
 
         }
         builder.setNegativeButton(getString(R.string.no)) { _, _ ->
